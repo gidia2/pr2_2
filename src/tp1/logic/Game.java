@@ -166,10 +166,6 @@ public class Game implements GameStatus, GameWorld, GameModel {
 		player.enableLaser();
 	}
 	
-	public void enableSuperLaser() {
-		player.enableSuperLaser();
-	}
-	
 	public void enableShockWave() {
 		player.enableShockWave();
 	}

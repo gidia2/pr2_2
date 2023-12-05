@@ -5,18 +5,12 @@ import tp1.logic.Move;
 import tp1.logic.Position;
 import tp1.view.Messages;
 
-public class SuperLaser extends UCMWeapon {
+public class SuperLaser extends UCMLaser {
 	
-	private static final int ARMOR = 1;
 	private static final int DAMAGE = 2;
 
 	public SuperLaser(GameWorld game, Position pos) {
-		super(game, pos, ARMOR, Move.UP);
-	}
-
-	@Override
-	protected void weaponAttack(GameItem other) {
-		other.receiveAttack(this);
+		super(game, pos);
 	}
 
 	@Override
@@ -25,22 +19,8 @@ public class SuperLaser extends UCMWeapon {
 	}
 
 	@Override
-	protected int getDamage() {
+	public int getDamage() {
 		return DAMAGE;
-	}
-
-	@Override
-	protected int getArmor() {
-		return ARMOR;
-	}
-
-	@Override
-	public boolean onDelete() {
-		life = 0;
-		pos = null;
-		game.enableSuperLaser();
-		game.removeObject(this);
-		return true;
 	}
 
 }

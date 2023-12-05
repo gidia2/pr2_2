@@ -23,7 +23,6 @@ public interface GameWorld {
 	
 	public void enableBomb(DestroyerAlien alien);
 	public void enableLaser();
-	public void enableSuperLaser();
 	public void enableShockWave();
 	
 	public void alienDead(AlienShip alien);

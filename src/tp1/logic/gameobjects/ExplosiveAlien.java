@@ -5,14 +5,13 @@ import tp1.logic.GameWorld;
 import tp1.logic.Position;
 import tp1.view.Messages;
 
-public class ExplosiveAlien extends AlienShip {
+public class ExplosiveAlien extends RegularAlien {
 	
-	private static final int ARMOR = 2;
 	private static final int DAMAGE = 1;
 	private static final int POINTS = 12;
 
 	public ExplosiveAlien(GameWorld game, Position pos, AlienManager alienManager) {
-		super(game, pos, ARMOR, alienManager);
+		super(game, pos, alienManager);
 	}
 
 	public ExplosiveAlien() {}
@@ -21,11 +20,11 @@ public class ExplosiveAlien extends AlienShip {
 		return POINTS;
 	}
 
-	protected String getDescription() {
+	public String getDescription() {
 		return Messages.EXPLOSIVE_ALIEN_DESCRIPTION;
 	}
 
-	protected String getSymbol() {
+	public String getSymbol() {
 		return Messages.EXPLOSIVE_ALIEN_SYMBOL;
 	}
 
@@ -33,18 +32,10 @@ public class ExplosiveAlien extends AlienShip {
 		return DAMAGE;
 	}
 
-	protected int getArmor() {
-		return ARMOR;
-	}
-	
 	@Override
-	public boolean onDelete () {
-		life = 0;
-		game.receivePoints(getPoints());
+	public boolean onDelete() {
 		game.explosion(this);
-		pos = null;
-		game.alienDead(this);
-		return true;
+		return super.onDelete();
 	}
 	
 	protected AlienShip copy(GameWorld game, Position pos, AlienManager am){

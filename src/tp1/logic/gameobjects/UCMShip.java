@@ -11,15 +11,13 @@ public class UCMShip extends Ship {
 
 	private int points;
 	private boolean hasShockWave;
-	private boolean canShootLaser;
-	private boolean canShootSuperLaser;
+	private boolean canShoot;
 	
 	public UCMShip(GameWorld game) {
 		super(game, INITIAL_POS, ARMOR);
 		points = 0;
 		hasShockWave = false;
-		canShootLaser = true;
-		canShootSuperLaser = true;
+		canShoot = true;
 	}
 		
 	@Override
@@ -57,11 +55,7 @@ public class UCMShip extends Ship {
 	}
 	
 	public void enableLaser(){
-		canShootLaser = true;
-	}
-	
-	public void enableSuperLaser(){
-		canShootSuperLaser = true;
+		canShoot = true;
 	}
 	
 	public boolean hasShockWave() {
@@ -72,20 +66,20 @@ public class UCMShip extends Ship {
 	}
 	
 	public boolean shootLaser() {
-		if(canShootLaser) {
+		if(canShoot) {
 			UCMLaser laser = new UCMLaser(game, pos);
 			game.addObject(laser);
-			canShootLaser = false;
+			canShoot = false;
 			return true;
 		}
 		return false;
 	}
 	
 	public boolean shootSuperLaser() {
-		if(canShootSuperLaser && points >= 5) {
+		if(canShoot && points >= 5) {
 			SuperLaser superLaser = new SuperLaser(game, pos);
 			game.addObject(superLaser);
-			canShootSuperLaser = false;
+			canShoot = false;
 			points -= 5;
 			return true;
 		}
